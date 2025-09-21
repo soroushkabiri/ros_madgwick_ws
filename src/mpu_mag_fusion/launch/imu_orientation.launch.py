@@ -53,6 +53,28 @@ def generate_launch_description():
             ]
         ),
 
+        # Madgwick filter for follower 2
+        Node(
+            package='imu_filter_madgwick',
+            executable='imu_filter_madgwick_node',
+            name='madgwick_filter',
+            output='screen',
+            parameters=[{
+                'use_mag': False,
+                'publish_tf': False,
+                'world_frame': 'enu',  # or 'nwu' if you prefer
+                'magnetic_declination_radians': 0.0,
+                'reverse_mag_y': False,
+                'reverse_mag_z': False
+            }],
+            remappings=[
+                ('imu/data_raw', 'imu/data_raw/F2'),
+                ('imu/mag', 'imu/mag'),
+                ('imu/data', 'imu/data/F2')  # final orientation
+            ]
+        ),
+
+
         # magdwich to yaw
         Node(
             package='mpu_mag_fusion',
