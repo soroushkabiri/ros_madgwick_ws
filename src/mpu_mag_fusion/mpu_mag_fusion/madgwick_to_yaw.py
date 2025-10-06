@@ -15,7 +15,7 @@ class YawExtractor(Node):
 
 
         # the variable to set how many followers i have.
-        self.followers_number = '1'  
+        self.followers_number = '2'  
         # Subscribe to /followers_number to know when the process should begin
         self.create_subscription(String, '/followers_number', self.followers_number_callback, 10)
 
@@ -73,10 +73,10 @@ class YawExtractor(Node):
                 self.offset_yaw_F1 = self.last_imu_yaw_F1 - self.rect_obj_odom_yaw
                 self.get_logger().info(f"Follower1 offset set to {self.offset_yaw_F1:.2f}")
 
-            if self.followers_number=='2':
-                if self.last_imu_yaw_F2 is not None:
-                    self.offset_yaw_F2 = self.last_imu_yaw_F2 - self.rect_obj_odom_yaw
-                    self.get_logger().info(f"Follower2 offset set to {self.offset_yaw_F2:.2f}")
+            #if self.followers_number=='2':
+            if self.last_imu_yaw_F2 is not None:
+                self.offset_yaw_F2 = self.last_imu_yaw_F2 - self.rect_obj_odom_yaw
+                self.get_logger().info(f"Follower2 offset set to {self.offset_yaw_F2:.2f}")
 
 
     def odom_callback(self, msg: Odometry):

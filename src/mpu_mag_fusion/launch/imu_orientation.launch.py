@@ -36,7 +36,7 @@ def generate_launch_description():
         Node(
             package='imu_filter_madgwick',
             executable='imu_filter_madgwick_node',
-            name='madgwick_filter',
+            name='madgwick_filter_follower1',
             output='screen',
             parameters=[{
                 'use_mag': False,
@@ -57,7 +57,7 @@ def generate_launch_description():
         Node(
             package='imu_filter_madgwick',
             executable='imu_filter_madgwick_node',
-            name='madgwick_filter',
+            name='madgwick_filter_follower2',
             output='screen',
             parameters=[{
                 'use_mag': False,
